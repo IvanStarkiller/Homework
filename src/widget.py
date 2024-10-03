@@ -8,9 +8,11 @@ def mask_account_card(card: str) -> str:
     """Функция работает и с картой и со счетом"""
     card_number = "".join(i if i.isdigit() else "" for i in card)
     number_card_mask = get_mask_card_number(card_number)
-    card_name = "".join("" if i.isdigit() else i for i in card)
-    card_mask = card_name + number_card_mask
-    return card_mask
+    if number_card_mask is not None:
+        card_name = "".join("" if i.isdigit() else i for i in card)
+        card_mask = card_name + number_card_mask
+        return card_mask
+    return ""
 
 
 print(mask_account_card("Visa Platinum 7000792289606364"))
